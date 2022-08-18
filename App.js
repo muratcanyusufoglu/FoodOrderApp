@@ -4,6 +4,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 const MusicRoute = () => <Text>Music</Text>;
 
+
+
 const AlbumsRoute = () => <Text>Albums</Text>;
 
 const RecentsRoute = () => <Text>Recents</Text>;
@@ -11,9 +13,9 @@ const RecentsRoute = () => <Text>Recents</Text>;
 const MyComponent = () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'music', title: 'Favorites', focusedIcon: <Ionicons name="Home" size={32} color="white" />, unfocusedIcon: 'heart-outline'},
-    { key: 'albums', title: 'Albums', focusedIcon: 'album' },
-    { key: 'recents', title: 'Recents', focusedIcon: 'history' },
+    { key: 'music', title: 'Home', icon: 'home', unfocusedIcon: 'heart-outline'},
+    { key: 'albums', title: 'Albums', icon: 'album' },
+    { key: 'recents', title: 'Recents', icon: 'history' },
     { key: 'notifications', title: 'Notifications', focusedIcon: 'bell', unfocusedIcon: 'bell-outline' },
   ]);
 
