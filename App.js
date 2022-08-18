@@ -1,37 +1,23 @@
 import * as React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
-import Ionicons from '@expo/vector-icons/Ionicons';
 
-const MusicRoute = () => <Text>Music</Text>;
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import HomeScreen from './src/components/pages/homePage';
+import LoadingScreen from './src/components/pages/locationPage';
 
+const Stack = createNativeStackNavigator();
 
-const AlbumsRoute = () => <Text>Albums</Text>;
-
-const RecentsRoute = () => <Text>Recents</Text>;
-
-const MyComponent = () => {
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-    { key: 'music', title: 'Home', icon: 'home', unfocusedIcon: 'heart-outline'},
-    { key: 'albums', title: 'Albums', icon: 'album' },
-    { key: 'recents', title: 'Recents', icon: 'history' },
-    { key: 'notifications', title: 'Notifications', focusedIcon: 'bell', unfocusedIcon: 'bell-outline' },
-  ]);
-
-  const renderScene = BottomNavigation.SceneMap({
-    music: MusicRoute,
-    albums: AlbumsRoute,
-    recents: RecentsRoute,
-  });
-
-  return (
-    <BottomNavigation
-      navigationState={{ index, routes }}
-      onIndexChange={setIndex}
-      renderScene={renderScene}
-    />
+function App() {
+  return(
+  <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="Loading" component={LoadingScreen}/>
+      <Stack.Screen name="Home" component={HomeScreen} />
+    </Stack.Navigator>
+  </NavigationContainer>
   );
-};
+}
 
-export default MyComponent;
+export default App;
