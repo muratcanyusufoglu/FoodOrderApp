@@ -1,20 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { BottomNavigation, Text } from 'react-native-paper';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-export default function App() {
+const MusicRoute = () => <Text>Music</Text>;
+
+const AlbumsRoute = () => <Text>Albums</Text>;
+
+const RecentsRoute = () => <Text>Recents</Text>;
+
+const MyComponent = () => {
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: 'music', title: 'Favorites', focusedIcon: <Ionicons name="Home" size={32} color="white" />, unfocusedIcon: 'heart-outline'},
+    { key: 'albums', title: 'Albums', focusedIcon: 'album' },
+    { key: 'recents', title: 'Recents', focusedIcon: 'history' },
+    { key: 'notifications', title: 'Notifications', focusedIcon: 'bell', unfocusedIcon: 'bell-outline' },
+  ]);
+
+  const renderScene = BottomNavigation.SceneMap({
+    music: MusicRoute,
+    albums: AlbumsRoute,
+    recents: RecentsRoute,
+  });
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <BottomNavigation
+      navigationState={{ index, routes }}
+      onIndexChange={setIndex}
+      renderScene={renderScene}
+    />
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default MyComponent;
